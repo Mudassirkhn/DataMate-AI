@@ -1,15 +1,15 @@
-# 📊 DataMate AI
+ 📊 DataMate AI
 
-## Transform Raw Data into Insights and Visualizations
+ Transform Raw Data into Insights and Visualizations
 
-DataMate AI is a simple and interactive data analysis web application built using Python and Streamlit. Users can upload CSV files and instantly explore, analyze, visualize, and download their data.
+DataMate AI is a simple and interactive data analysis web application built using Python and Streamlit. It allows users to upload CSV files and instantly explore, analyze, visualize, and download their processed data.
 
 ---
 
-## 🚀 Features
+ 🚀 Features
 
 - 📤 Upload CSV files
-- 📋 Dataset Preview
+- 📄 Dataset Preview
 - 📊 Dataset Information
   - Total Rows
   - Total Columns
@@ -23,7 +23,7 @@ DataMate AI is a simple and interactive data analysis web application built usin
 
 ---
 
-## 🛠️ Technologies Used
+ 🛠 Technologies Used
 
 - Python
 - Streamlit
@@ -32,57 +32,95 @@ DataMate AI is a simple and interactive data analysis web application built usin
 
 ---
 
-## 📦 Installation
-
-1-Go to the project folder:
-cd DataMate-AI
-
-2-Install the required dependencies:
-pip install -r requirements.txt
-
-3-Open the application in your browser:
-http://localhost:8501
-
-📊 How It Works
-1-Upload a CSV file.
-2-DataMate AI reads and analyzes the dataset.
-3-View dataset preview and summary statistics.
-4-Explore numeric data using visualizations.
-5-Analyze categorical columns.
-6-View correlations between numeric variables.
-7-Download the processed data.
-
-🎯 Use Cases
-Data Analysis
-Exploratory Data Analysis (EDA)
-Business Data Insights
-Student Projects
-Quick CSV Visualization
-
-
-Visualization
-📁 Project Structure
+## 📂 Project Structure
 DataMate-AI/
 │
 ├── app.py
 ├── requirements.txt
 └── README.md
 
-⭐ Future Improvements
-Support Excel files
+⚙️ Installation and Reproducible Testing Instructions
+
+Follow these steps to reproduce and test the project locally.
+
+1. Clone the Repository
+ git clone https://github.com/Mudassirkhn/DataMate-AI.git
+
+2. Navigate to the Project Folder
+   cd DataMate-AI
+
+3. Create a Virtual Environment (Recommended)
+   python -m venv venv
+
+   Activate the Virtual Environment
+Windows - venv\Scripts\activate
+
+4. Install Required Dependencies
+   pip install -r requirements.txt
+
+5. Run the Application
+   streamlit run app.py
+
+6. Open the Application
+After running the command, open the following URL in your browser:
+http://localhost:8501
+
+🧪 How to Test the Application
+Open the DataMate AI application.
+Upload a CSV file.
+View the dataset preview.
+Check dataset information such as rows, columns, and missing values.
+Explore summary statistics.
+Analyze numeric columns.
+View data distribution visualizations.
+Analyze categorical columns.
+Generate and view the correlation matrix.
+Download the processed data.
+📊 Supported Dataset
+
+Currently, DataMate AI supports:
+
+CSV files (.csv)
+
+For testing, you can upload any valid CSV dataset containing numeric and/or categorical data.
+
+🎯 Use Cases
+
+DataMate AI can be useful for:
+
+Data Analysis
+Exploratory Data Analysis (EDA)
+Business Data Insights
+Student Projects
+Quick CSV Visualization
+Dataset Exploration
+🌐 Live Demo
+
+Try the live application:
+
+https://datamate-ai.onrender.com/
+
+🔮 Future Improvements
+Support for Excel files
 AI-powered data insights
 Automatic chart recommendations
 Advanced data cleaning
 Interactive dashboards
 Export visualizations
-
 📄 License
 
 This project is created for educational and hackathon purposes.
 
-**Ek important cheez:** GitHub username/link README me paste karne se pehle check kar lena ki `Mudassirkhn` aapka exact GitHub username hai. Screenshot ke hisaab se repository successfully upload ho chuki hai.
+👨‍💻 Author
 
+Mudassir Khan
 
+GitHub: https://github.com/Mudassirkhn
 
-```bash
-git clone https://github.com/Mudassirkhn/DataMate-AI.git
+⭐ If you like this project, consider giving the repository a star!
+
+Important: GitHub README edit page me pura purana content delete karke ye paste karo aur Commit changes kar do. Iske baad Devpost form me “Did you add Reproducible Testing instructions to your README?” → Yes select karna.
+
+├── app.py
+├── requirements.txt
+└── README.md
