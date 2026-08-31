@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import os
 from google import genai
 
 
@@ -15,13 +16,22 @@ st.set_page_config(
 
 
 # ==========================================
-# Load Gemini API Key from secrets.toml
+# Load Gemini API Key
+# Local: .streamlit/secrets.toml
+# Render: Environment Variable
 # ==========================================
 
-try:
-    api_key = st.secrets["GEMINI_API_KEY"]
-except Exception:
-    api_key = None
+api_key = None
+
+# First try Render Environment Variable
+api_key = os.getenv("GEMINI_API_KEY")
+
+# If not found, try Streamlit secrets.toml
+if not api_key:
+    try:
+        api_key = st.secrets["GEMINI_API_KEY"]
+    except Exception:
+        api_key = None
 
 
 # ==========================================
@@ -63,7 +73,10 @@ if uploaded_file is not None:
 
     try:
 
+        # ==========================================
         # Read CSV
+        # ==========================================
+
         df = pd.read_csv(uploaded_file)
 
         # Upload Success
@@ -97,7 +110,10 @@ if uploaded_file is not None:
                     )
 
 
+                    # ==========================================
                     # AI Prompt
+                    # ==========================================
+
                     prompt = f"""
 You are an expert data analyst.
 
@@ -108,23 +124,32 @@ Use Markdown formatting with clear headings.
 Please provide:
 
 ## 1. Important Insights
+
 Analyze the most important patterns and findings.
 
 ## 2. Data Quality Issues
-Identify possible duplicate data, inconsistent values, or other quality problems.
+
+Identify possible duplicate data, inconsistent values,
+or other quality problems.
 
 ## 3. Missing Values Analysis
+
 Explain missing values and their possible impact.
 
 ## 4. Important Trends
-Identify important trends and patterns in the dataset.
+
+Identify important trends and patterns
+in the dataset.
 
 ## 5. Business Recommendations
-Provide practical and actionable business recommendations.
+
+Provide practical and actionable
+business recommendations.
 
 Dataset Information:
 
 - Total Rows: {df.shape[0]}
+
 - Total Columns: {df.shape[1]}
 
 Column Names:
@@ -137,7 +162,10 @@ Dataset Sample:
 """
 
 
+                    # ==========================================
                     # Gemini Analysis
+                    # ==========================================
+
                     with st.spinner(
                         "🤖 Gemini is analyzing your data..."
                     ):
@@ -185,7 +213,7 @@ Dataset Sample:
 
             st.warning(
                 "⚠️ Gemini API Key not found. "
-                "Please add it to .streamlit/secrets.toml"
+                "Please check Render Environment Variables."
             )
 
 
@@ -206,7 +234,6 @@ Dataset Sample:
         # ==========================================
 
         st.header("📊 Dataset Information")
-
 
         col1, col2, col3 = st.columns(3)
 
@@ -235,11 +262,8 @@ Dataset Sample:
 
         st.header("📈 Data Summary")
 
-
         st.dataframe(
-            df.describe(
-                include="all"
-            ),
+            df.describe(include="all"),
             use_container_width=True
         )
 
@@ -252,17 +276,16 @@ Dataset Sample:
 
 
         # Find Numeric Columns
+
         numeric_columns = df.select_dtypes(
             include=[
-                "int64",
-                "float64",
-                "int32",
-                "float32"
+                "number"
             ]
         ).columns.tolist()
 
 
         # Find Categorical Columns
+
         categorical_columns = df.select_dtypes(
             include=[
                 "object",
